@@ -1,0 +1,94 @@
+{
+  "name": "Mod JAR Recovery Toolkit Smart",
+  "version": "2.0.0",
+  "createdUtc": "2026-10-24",
+  "minimumMinecraftForAutomaticYarnRemap": "1.20.1",
+  "mappingPolicy": "Uses the latest stable Yarn build published for the exact selected Minecraft release. Optional bulk mode downloads all stable builds. Snapshots and release candidates are excluded.",
+  "javaRequirement": "Java 17+ for Vineflower 1.12.0; Java 21 recommended.",
+  "bundledArtifacts": [
+    {
+      "path": "tools/vineflower-1.12.0.jar",
+      "version": "1.12.0",
+      "role": "decompiler",
+      "sizeBytes": 1633863,
+      "sha256": "1dfcfe974395734fa467ce620661c7623d05ba83670de0529b1fbd63ff548b9d"
+    },
+    {
+      "path": "tools/tiny-remapper-0.10.4-fat.jar",
+      "version": "0.10.4",
+      "role": "remapper",
+      "sizeBytes": 742430,
+      "sha256": "aff82c3e052d031be8cba33f97a5e4d1b0098f6a9e942f4457706f751b4032b2"
+    },
+    {
+      "path": "cache/yarn/1.21.4/yarn-1.21.4+build.8-v2.jar",
+      "version": "1.21.4+build.8",
+      "role": "Yarn mapping; intermediary -> named",
+      "sizeBytes": 1538386,
+      "sha256": "a7a042f45ebc0384d5b72c926a435695610380c1a4dab0992fa8dd0aa386f960"
+    },
+    {
+      "path": "cache/yarn/1.21.8/yarn-1.21.8+build.1-v2.jar",
+      "version": "1.21.8+build.1",
+      "role": "Yarn mapping; intermediary -> named",
+      "sizeBytes": 1613075,
+      "sha256": "af0be370862072ba1b2f30aed5473e52ae2e0f232d89090741319553895a6043"
+    },
+    {
+      "path": "references/1.21.4/minecraft-client-intermediary-1.21.4-build7.jar",
+      "version": "1.21.4 (intermediary; Yarn build 7 reference)",
+      "role": "Minecraft client reference",
+      "sizeBytes": 10481015,
+      "sha256": "f8bde15b7405173c5155bb7b8d540fd2d63f5ae83617400f1bc48b64ec50b653"
+    },
+    {
+      "path": "references/1.21.4/fabric-api-0.119.4+1.21.4.jar",
+      "version": "0.119.4+1.21.4",
+      "role": "optional classpath reference",
+      "sizeBytes": 2149128,
+      "sha256": "d183bacb845167f09264c2f90322b7ecffe8826debda6f60e597889264bef4af"
+    },
+    {
+      "path": "references/1.21.4/fabric-loader-0.19.5.jar",
+      "version": "0.19.5",
+      "role": "optional classpath reference",
+      "sizeBytes": 1984980,
+      "sha256": "93044e4dd46de5d8136701292f05e868da096d2c9fddb4793e4fdbcc63efc695"
+    },
+    {
+      "path": "references/1.21.4/cloth-config-17.0.144-fabric.jar",
+      "version": "17.0.144-fabric",
+      "role": "optional classpath reference",
+      "sizeBytes": 1152857,
+      "sha256": "1fda0c4a89d4f075e51b3eb5570a4912870656d252d806ea3091d2bbc06781ea"
+    },
+    {
+      "path": "references/1.21.4/modmenu-13.0.4.jar",
+      "version": "13.0.4",
+      "role": "optional classpath reference",
+      "sizeBytes": 1050885,
+      "sha256": "9774ff929f747d913458d469b1ad539bc0c61294a8f3aa58fe89b1b212cfc066"
+    }
+  ],
+  "automaticDownloadSources": [
+    {
+      "name": "Fabric Yarn Maven metadata",
+      "url": "https://maven.fabricmc.net/net/fabricmc/yarn/maven-metadata.xml"
+    },
+    {
+      "name": "Fabric Intermediary Maven",
+      "url": "https://maven.fabricmc.net/net/fabricmc/intermediary/"
+    },
+    {
+      "name": "Mojang version manifest",
+      "url": "https://piston-meta.mojang.com/mc/game/version_manifest_v2.json"
+    }
+  ],
+  "notes": [
+    "The original input JAR is never modified.",
+    "A separately named archival copy embeds META-INF/RECOVERY_TOOLCHAIN.json and may have invalidated digital signatures; never install that copy.",
+    "Remapped JARs are for analysis, not installable replacements unless resources/refmaps/mixins and runtime behavior are independently validated.",
+    "Decompilation cannot restore the exact original source, comments, or all original names.",
+    "Check each original mod license before copying or distributing recovered code."
+  ]
+}

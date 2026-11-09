@@ -1,0 +1,49 @@
+MOD JAR RECOVERY TOOLKIT SMART 2.0 — ZACZNIJ TUTAJ
+===================================================
+
+NAJPROSTSZA OBSLUGA
+1. Rozpakuj CALE archiwum ZIP do jednego folderu.
+2. Zainstaluj JDK 21 (Java 17 jest minimum dla Vineflower 1.12).
+3. Kliknij dwukrotnie Check-Tools.bat i sprawdz, czy Java oraz dwa narzedzia sa wykryte.
+4. Przeciagnij plik moda .jar na Recover-Mod.bat. (Inspect-Mod.bat tylko sprawdza metadane i namespace, bez dekompilacji.)
+5. Potwierdz dokladna wersje Minecrafta. Nie akceptuj sugestii z nazwy pliku, jesli wiesz, ze jest bledna.
+6. Jesli wykryto namespace intermediary, wybierz remapowanie do Yarn named.
+7. Wyniki beda w folderze output\NAZWA-DATA-CZAS.
+
+CO JEST WYNIKIEM
+- 00-ORIGINAL-UNCHANGED-*.jar: oryginalny JAR skopiowany bez modyfikacji.
+- 00-ANNOTATED-ARCHIVE-ONLY-*.jar: kopia z META-INF/RECOVERY_TOOLCHAIN.json; tylko do archiwizacji, NIE instaluj jej. Dodanie metadanych uniewaznia podpis cyfrowy JAR-a.
+- 01-source-original: zrodla po dekompilacji oryginalnego JAR-a.
+- 02-remapped-class-analysis-*.jar: klasy po remapowaniu, material do analizy, nie zamiennik instalacyjny.
+- 03-source-named: zrodla zdekompilowane z klas po remapowaniu.
+- 04-resources-original: oryginalne zasoby, JSON, configi mixinow/refmapy, tekstury itd.
+- RECOVERY_TOOLCHAIN.json: wersje narzedzi, mappingu, hashe SHA-256/SHA-1, wersja gry, wykryty namespace, status etapow.
+- RECOVERY_REPORT.txt i JSON_VALIDATION_ISSUES.csv: raport oraz niepoprawne pliki JSON.
+
+MAPOWANIA YARN OD 1.20.1
+- Download-Yarn-Mappings.bat: pobiera najnowszy stabilny build Yarn dla kazdej wersji release od 1.20.1 wzwyz, ktora jest opublikowana na Fabric Maven.
+- Fetch-Yarn-For-Version.bat: pobiera najnowszy build dla podanej konkretnej wersji Minecrafta.
+- Download-All-Yarn-Builds.bat: pobiera WSZYSTKIE stabilne buildy od 1.20.1 wzwyz; moze zajac znacznie wiecej miejsca.
+- Dla niektorych najnowszych wersji Minecrafta Yarn moze nie byc publikowany. Skrypt nie dobiera mapowan innej wersji po cichu.
+
+UWAGA O WERSJI GRY
+Minecraft constraint z fabric.mod.json jest czesto zakresem (np. >=1.20.1), a nie wersja kompilacji. Skrypt uzywa nazwy pliku/metadanych tylko jako sugestii i prosi o potwierdzenie. Dla modow z nieznana wersja wpisz konkretna wersje albo wybierz pominięcie remapowania.
+
+CO TOOLKIT OBSLUGUJE AUTOMATYCZNIE
+- Oryginalny JAR pozostaje niezmieniony; jego SHA-256 trafia do raportu.
+- Zasoby sa rozpakowane osobno, a JSON/MCmeta sprawdzane parserem PowerShell.
+- Intermediary -> Yarn named: pobierane sa mapowania Yarn dla dokladnej wersji i referencyjny Minecraft client JAR w namespace intermediary (budowany z oficjalnego client JAR-a i mapowan Intermediary, chyba ze referencja jest juz w references\<wersja>).
+- Wersje narzedzi oraz mapowan sa zapisywane w sidecar RECOVERY_TOOLCHAIN.json; dodatkowa kopia archiwalna moze miec ten plik w META-INF.
+
+OGRANICZENIA
+- Dekompilacja nie odzyskuje komentarzy ani gwarantowanie oryginalnych nazw zmiennych; to nie jest identyczny src.
+- Remapping nie gwarantuje zgodnosci refmapow, stringow mixin, access wideners, nested JAR-ow ani zachowania runtime.
+- Obsluga automatycznego remapowania jest celowo ograniczona do intermediary -> Yarn named. Yarn named/unknown otrzymuja surowe zrodla; Mojmap/Forge wymaga oddzielnej analizy i mostu mapowan.
+- Remapowany JAR jest materialem do analizy. Nie instaluj go jako moda bez przebudowania zasobow i testow.
+- Odzyskiwanie kodu nie daje praw do kopiowania/redistribucji. Sprawdz licencje moda.
+- Pobieranie mapowan/Minecrafta wymaga internetu. Javy nie dolaczono do ZIP-a.
+
+Problemy? Zachowaj caly folder output i wyslij RECOVERY_REPORT.txt oraz logi z konsoli.
+
+WALIDACJA
+- Przeczytaj docs\VALIDATION_NOTE.md: zawiera prawdziwie wykonane testy oraz ograniczenia.
